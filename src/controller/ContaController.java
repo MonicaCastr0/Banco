@@ -22,6 +22,13 @@ public class ContaController {
             System.out.println(e.getMessage());
         }
     }
+    public boolean validarConta(String numero) {
+        Conta Conta = servico.buscarConta(numero);
+        if (Conta == null) {
+            return false;
+        }
+        return true;
+    }
 
     public void sacar(String numero, double valor) {
         try {

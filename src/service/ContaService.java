@@ -3,6 +3,7 @@ package service;
 import model.Conta;
 import repository.ContaRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class ContaService {
@@ -20,20 +21,24 @@ public class ContaService {
         Conta conta = repositorio.buscar(numero);
         if(conta == null){
             throw new IllegalArgumentException("Conta não encontrada!");
+        } else if (valor <=0) {
+            System.out.println("Valor incorreto!");
         }
         conta.setSaldo(conta.getSaldo()+valor);
-        conta.adicinartrancacoes("Deposito de: R$"+valor);
+        conta.adicinartrancacoes("Deposito: R$"+valor+"Data: "+ LocalDateTime.now());
     }
     public void sacar(String numero, double valor){
         Conta conta = repositorio.buscar(numero);
         if(conta == null){
             throw new IllegalArgumentException("Conta não encontrada!");
         }
-        if(valor > conta.getSaldo()){
+        else if(valor > conta.getSaldo()){
             throw new IllegalArgumentException("Saldo insuficiente!");
+        } else if (valor <= 0) {
+            System.out.println("Valor incorreto!");
         }
         conta.setSaldo(conta.getSaldo()-valor);
-        conta.adicinartrancacoes("Saque de: R$"+valor);
+        conta.adicinartrancacoes("Saque de: R$"+valor+"Data: "+ LocalDateTime.now());
     }
     public List<String> extrato(String numero){
         Conta conta = repositorio.buscar(numero);

@@ -9,7 +9,7 @@ public class app {
         Scanner entrada = new Scanner(System.in);
         int opcao;
         do {
-            System.out.println("Bem vindo ao sistema de contas");
+            System.out.println("------------------------------------------------------");
             System.out.println("Digite a operação que você deseja realizar: ");
             System.out.println("1 - Cadastrar Conta");
             System.out.println("2 - Buscar Conta");
@@ -17,6 +17,7 @@ public class app {
             System.out.println("4 - Depositar");
             System.out.println("5 - Extrato");
             System.out.println("6 - Sair");
+            System.out.println("------------------------------------------------------");
             opcao = entrada.nextInt();
             entrada.nextLine(); // limpa buffer
 
@@ -36,21 +37,34 @@ public class app {
                 case 3:
                     System.out.println("Digite numero do conta: ");
                     String num2 = entrada.nextLine();
-                    System.out.println("Digite valor do saque");
-                    double valor = entrada.nextDouble();
-                    c.sacar(num2, valor);
+                    if(c.validarConta(num2)){
+                        System.out.println("Digite valor do saque");
+                        double valor = entrada.nextDouble();
+                        c.sacar(num2, valor);
+                    } else {
+                        System.out.println("Conta Não encontrada!");
+                    }
                     break;
                 case 4:
                     System.out.println("Digite o numero da conta");
                     String num3 = entrada.nextLine();
-                    System.out.println("Digite o valor do deposito");
-                    double valor1 = entrada.nextDouble();
-                    c.depositar(num3, valor1);
+                    if(c.validarConta(num3)) {
+                        System.out.println("Digite o valor do deposito");
+                        double valor1 = entrada.nextDouble();
+                        c.depositar(num3, valor1);
+                    }
+                    else {
+                        System.out.println("Conta Não encontrada!");
+                    }
                     break;
                 case 5:
                     System.out.println("Digite numero do conta: ");
                     String num4 = entrada.nextLine();
-                    c.trancacoes(num4);
+                    if(c.validarConta(num4)) {
+                        c.trancacoes(num4);
+                    }else {
+                        System.out.println("Conta não encontrada");
+                    }
                     break;
                 case 6:
                     System.out.println("Saindo...");
