@@ -33,7 +33,6 @@ public class ContaController {
     public void sacar(String numero, double valor) {
         try {
             servico.sacar(numero, valor);
-            System.out.println("Saque realizada com sucesso");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -42,7 +41,6 @@ public class ContaController {
     public void depositar(String numero, double valor) {
         try {
             servico.depositar(numero, valor);
-            System.out.println("Deposito realizado com sucesso");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

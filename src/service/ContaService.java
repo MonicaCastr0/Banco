@@ -23,10 +23,11 @@ public class ContaService {
             throw new IllegalArgumentException("Conta não encontrada!");
         } else if (valor <=0) {
             System.out.println("Valor incorreto!");
-        }
+        }else {
         conta.setSaldo(conta.getSaldo()+valor);
-        conta.adicinartrancacoes("Deposito: R$"+valor+"Data: "+ LocalDateTime.now());
-    }
+        conta.adicinartrancacoes("Deposito: R$"+valor+" Data: "+ LocalDateTime.now());
+        System.out.println("Deposito realizado com sucesso!");
+    }}
     public void sacar(String numero, double valor){
         Conta conta = repositorio.buscar(numero);
         if(conta == null){
@@ -36,10 +37,11 @@ public class ContaService {
             throw new IllegalArgumentException("Saldo insuficiente!");
         } else if (valor <= 0) {
             System.out.println("Valor incorreto!");
-        }
+        } else {
         conta.setSaldo(conta.getSaldo()-valor);
-        conta.adicinartrancacoes("Saque de: R$"+valor+"Data: "+ LocalDateTime.now());
-    }
+        conta.adicinartrancacoes("Saque de: R$"+valor+" Data: "+ LocalDateTime.now());
+        System.out.println("Saque realizada com sucesso!");
+    }}
     public List<String> extrato(String numero){
         Conta conta = repositorio.buscar(numero);
         if(conta == null){

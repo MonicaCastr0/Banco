@@ -25,6 +25,10 @@ public class app {
                 case 1:
                     System.out.println("Digite numero do conta: ");
                     String num = entrada.nextLine();
+                    if(c.validarConta(num)){
+                        System.out.println("Conta já cadastrada");
+                        break;
+                    }
                     System.out.println("Digite o nome completo do titular da conta");
                     String titular = entrada.nextLine();
                     c.criarConta(num, titular);
@@ -37,34 +41,32 @@ public class app {
                 case 3:
                     System.out.println("Digite numero do conta: ");
                     String num2 = entrada.nextLine();
-                    if(c.validarConta(num2)){
+                    if(c.validarConta(num2) == false) {
+                        System.out.println("Conta Não encontrada!");
+                        break;
+                    }
                         System.out.println("Digite valor do saque");
                         double valor = entrada.nextDouble();
                         c.sacar(num2, valor);
-                    } else {
-                        System.out.println("Conta Não encontrada!");
-                    }
                     break;
                 case 4:
                     System.out.println("Digite o numero da conta");
                     String num3 = entrada.nextLine();
-                    if(c.validarConta(num3)) {
-                        System.out.println("Digite o valor do deposito");
-                        double valor1 = entrada.nextDouble();
-                        c.depositar(num3, valor1);
-                    }
-                    else {
+                    if(c.validarConta(num3) == false) {
                         System.out.println("Conta Não encontrada!");
+                        break;
                     }
+                    System.out.println("Digite o valor do deposito");
+                    double valor1 = entrada.nextDouble();
+                    c.depositar(num3, valor1);
                     break;
                 case 5:
                     System.out.println("Digite numero do conta: ");
                     String num4 = entrada.nextLine();
-                    if(c.validarConta(num4)) {
-                        c.trancacoes(num4);
-                    }else {
+                    if(c.validarConta(num4) == false) {
                         System.out.println("Conta não encontrada");
                     }
+                    c.trancacoes(num4);
                     break;
                 case 6:
                     System.out.println("Saindo...");
