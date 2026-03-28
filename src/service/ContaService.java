@@ -39,7 +39,7 @@ public class ContaService {
             System.out.println("Valor incorreto!");
         } else {
         conta.setSaldo(conta.getSaldo()-valor);
-        conta.adicinartrancacoes("Saque de: R$"+valor+" Data: "+ LocalDateTime.now());
+        conta.adicinartrancacoes("Saque: R$"+valor+" Data: "+ LocalDateTime.now());
         System.out.println("Saque realizada com sucesso!");
     }}
     public List<String> extrato(String numero){
